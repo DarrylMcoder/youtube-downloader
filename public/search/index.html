@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+      body, html {
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        font: Arial 14px;
+      }
+    </style>
+    <link rel="stylesheet" href="../style.css"/>
+    <script defer src="../script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
+  </head>
+  <body>
+    <div class="content">
+    <input type="text" id="input" class="input" inputmode="search">
+    <button type="submit" id="btn_search" class="go">
+      Search
+    </button>
+    
+    <script type="text/javascript">
+      $(function() {
+        $("#input").autocomplete({
+          source: 'https://darrylmcoder-ytapp.herokuapp.com/search/autocomplete.php',
+        });
+        $("#input").on("focus",function() {
+          $(".content").animate({    
+            marginTop: 0,
+          },0);
+        });
+        
+        $("#btn_search").click(function() {
+          var input = $("#input").val();
+          searchVideos(input,0);
+        });
+      });
+      
+      function searchVideos(input,index) {
+        console.info(index);
+        var q = input.replace("/ /g","+");
+        var q = encodeURIComponent(q);
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyDlYtl9MQ_g5eEV3YbZW--ACOGU2kx8qYk&cx=155e8972f0caaff4a&q="+q+"&start="+index);
+        xhr.onreadystatechange = function() {
+          if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
+              var res = JSON.parse(xhr.responseText);
+              var items = res.items;
+              for(const item of items){
+                addOption(item);
+              }
+              var nextIndex = res.queries.nextPage[0].startIndex;
+              if(nextIndex !== undefined){
+                var more = document.createElement("img");
+                more.setAttribute("src","../img/more.png");
+                more.setAttribute("width","100%");
+                more.addEventListener("click",function() {
+                  this.setAttribute("style","display:none;");
+                  searchVideos(input,nextIndex);
+                });
+                document.body.appendChild(more);
+              }
+            }else{
+              alert(xhr.status);
+              console.log(xhr.response);
+            }
+          }
+        };
+        xhr.send();
+      }
+      
+      function addOption(option) {
+        var result = document.createElement('div');
+       result.setAttribute("class", "resultbox");
+        
+        var thumb_url = "../stream.php?url="+encodeURIComponent(option.pagemap.imageobject[0].url);
+        console.log(thumb_url);
+        
+        var thumbnail = document.createElement("img");
+        thumbnail.setAttribute("width","25%");
+        thumbnail.setAttribute("style","float:left;");
+        thumbnail.setAttribute("src",thumb_url);
+        thumbnail.setAttribute("id","thumbnail");
+        var data = document.createElement("div");
+        data.setAttribute("style","display:none;");
+        data.setAttribute("url",option.link);
+        
+        
+        var video = document.createElement("video");
+        video.setAttribute("style","display:none;");
+        video.setAttribute("type","video/mp4");
+        var title = document.createElement("p");
+        title.setAttribute("id","title");
+        title.setAttribute("style","width:50%;float:left;");
+        title.innerHTML = option.htmlTitle;
 
+        var btn_save = document.createElement("img");
+        btn_save.setAttribute("src","../img/btn_save.jpg");
+        btn_save.setAttribute("width","25%");
+        
+        btn_save.setAttribute("style","float:left;");
+        var a = document.createElement("a");
+        a.setAttribute("href","../ytdown.php?url="+option.link);
+        a.appendChild(btn_save);
+        
+        result.appendChild(data);
+        result.appendChild(video);
+        result.appendChild(thumbnail);
+        result.appendChild(title);
+        result.appendChild(a);
+        document.body.appendChild(result);
+      }
+    </script>
+  </body>
+</html>
