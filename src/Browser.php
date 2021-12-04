@@ -16,6 +16,16 @@ class Browser extends BrowserClient
     {
         return Utils::arrayGet($this->headers, 'User-Agent');
     }
+  
+
+    public function setProxy($proxy_url)
+    {
+        $parsedUrl = parse_url($proxy_url);
+
+    $this->options[CURLOPT_PROXY] = $parsedUrl['host'].":".$parsedUrl['port'];
+    $this->options[CURLOPT_PROXYUSERPWD] = $parsedUrl['user'].":".$parsedUrl['pass'];
+    }
+  
 
     public function followRedirects($enabled)
     {
@@ -47,27 +57,5 @@ class Browser extends BrowserClient
     protected function getCacheKey($url)
     {
         return md5($url) . '_v3';
-    }
-
-    public function consentCookies()
-    {
-        $response = $this->get('https://www.youtube.com/');
-        $current_url = $response->info->url;
-
-        // must be missing that special cookie
-        if (strpos($current_url, 'consent.youtube.com') !== false) {
-
-            $field_names = ['gl', 'm', 'pc', 'continue', 'ca', 'x', 'v', 't', 'hl', 'src', 'uxe'];
-
-            $form_data = [];
-
-            foreach ($field_names as $name) {
-                $value = Utils::getInputValueByName($response->body, $name);
-                $form_data[$name] = htmlspecialchars_decode($value);
-            }
-
-            // this will set that cookie that we need to never see that message again
-            $this->post('https://consent.youtube.com/s', $form_data);
-        }
     }
 }
