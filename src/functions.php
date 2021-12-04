@@ -15,7 +15,7 @@ function absify($url,$abs){
 }
 
 function crypt_enable($loadingURL){
-  if($_GET["crypt_enabled"] === "on"){
+  if(isset($_GET["crypt_enabled"]) && $_GET["crypt_enabled"] === "on"){
     //javascript request
     $c = curl_init(getURL()."?crypt_enabled=off");
     curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
@@ -25,7 +25,7 @@ function crypt_enable($loadingURL){
     echo $crypto->encrypt($result);
     exit;
     
-  }elseif($_GET["crypt_enabled"] === "off"){
+  }elseif(isset($_GET["crypt_enabled"]) && $_GET["crypt_enabled"] === "off"){
     //encoding proxy request
     return;
   }elseif(!isset($_GET["crypt_enabled"])){
