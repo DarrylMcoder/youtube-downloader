@@ -30,8 +30,8 @@ function download($url,$youtube,$videoSaver){
 $links = $youtube->getDownloadLinks($url);
   
   $vids = $links->getCombinedFormats();
-  $best_vids = array_values( array_filter( array_values($vids), function($var){
-  return (strpos($var->mimeType,'video/mp4') === 0 && ($var->audioQuality != null));
+  $mp4_vids = array_values( array_filter( array_values($vids), function($var){
+  return (strpos($var->mimeType,'video/mp4') === 0 && $var->audioQuality != null);
 }));
   
 
@@ -39,7 +39,7 @@ $links = $youtube->getDownloadLinks($url);
 
 $name = $links->getInfo()->getTitle();
 
-$vid_url = $vids[0]->url;
+$vid_url = $mp4_vids[1]->url;
 
 $videoSaver->setDownloadedFileName($name);
 
