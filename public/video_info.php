@@ -44,7 +44,15 @@ function sendCombinedFormats($youtube,$url){
   
   $links = $youtube->getDownloadLinks($url);
 
-  $best = $links->getFirstCombinedFormat();
+  //$best = $links->getFirstCombinedFormat();
+  
+  
+  $vids = $links->getCombinedFormats();
+  $mp4_vids = array_values( array_filter( array_values($vids), function($var){
+  return (strpos($var->mimeType,'video/mp4') === 0 && $var->audioQuality != null);
+}));
+  
+  $best = $mp4_vids[0];
   
   $info = $links->getInfo();
   

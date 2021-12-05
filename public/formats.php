@@ -38,12 +38,12 @@ $url = base64_decode($url);
         vertical-align:center;
       }
     </style>
-    <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css"/>
-    <script defer src="http://static.darrylmcoder.epizy.com/assets/script.js"></script>
+    <link rel="stylesheet" href="<?=getenv('ASSETS')?>/style.css"/>
+    <script defer src="<?=getenv('ASSETS')?>/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
-    <?php echo file_get_contents("http://static.darrylmcoder.epizy.com/assets/header.html"); ?>
+    <?php echo file_get_contents(getenv('ASSETS')."/header.html"); ?>
     <div class="content"><br>
       <div class="pagetitle">
         Video Downloader
@@ -62,7 +62,15 @@ try{
   $formats = $links->getAllFormats();
   $info = $links->getInfo();
   $name = $info->getTitle();
-  $combined = $links->getFirstCombinedFormat();
+  //$combined = $links->getFirstCombinedFormat();
+      
+  
+  $vids = $links->getCombinedFormats();
+  $mp4_vids = array_values( array_filter( array_values($vids), function($var){
+  return (strpos($var->mimeType,'video/mp4') === 0 && $var->audioQuality != null);
+}));
+  $combined = $mp4_vids[0];
+  
   $best = $links->getSplitFormats("high");
   $audios = $links->getAudioFormats();
   $best_audio = end(array_values( array_filter( array_values($audios), function($var){
@@ -126,6 +134,6 @@ echo "<h3>".$name."</h3><br>";
       </div>
 
     </div>
-    <?php echo file_get_contents("http://static.darrylmcoder.epizy.com/assets/footer.html"); ?>
+    <?php echo file_get_contents(getenv('ASSETS')."/footer.html"); ?>
   </body>
 </html>

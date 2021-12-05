@@ -39,7 +39,7 @@ $links = $youtube->getDownloadLinks($url);
 
 $name = $links->getInfo()->getTitle();
 
-$vid_url = $mp4_vids[1]->url;
+$vid_url = $mp4_vids[0]->url;
 
 $videoSaver->setDownloadedFileName($name);
 
