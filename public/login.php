@@ -123,7 +123,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="wrapper">
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
-        <form action="?next=<?php echo $_GET["next"]; ?>" method="post">
+        <form action="?next=<?php echo isset($_GET['next']) ? $_GET["next"] : ''; ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
