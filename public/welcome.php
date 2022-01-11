@@ -1,5 +1,7 @@
 <?php
 // Initialize the session
+ini_set('session.cookie_lifetime', 60 * 60 * 24 * 7);
+ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 7);
 session_start();
  
 // Check if the user is logged in, if not then redirect him to login page

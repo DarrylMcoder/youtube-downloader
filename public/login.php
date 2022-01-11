@@ -4,6 +4,8 @@ ini_set('error_reporting', E_ALL ^ E_NOTICE);
 ini_set('display_errors', 1); 
 set_time_limit(0);
 // Initialize the session
+ini_set('session.cookie_lifetime', 60 * 60 * 24 * 7);
+ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 7);
 session_start();
 
 
