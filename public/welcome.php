@@ -1,8 +1,6 @@
 <?php
-// Initialize the session
-ini_set('session.cookie_lifetime', 60 * 60 * 24 * 7);
-ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 7);
-session_start();
+
+session_start();  // Initialize the session
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -14,30 +12,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=320, initial-scale=1">
-    <meta charset="utf-8">
-    <style>
-      body, html {
-        min-width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        font: Arial 14px;
-      }
-    </style>
+    <meta charset="UTF-8">
     <title>Welcome</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
         body{ font: 14px sans-serif; text-align: center; }
     </style>
 </head>
 <body>
-    <div class="page-header">
-        <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. <br>Welcome to our site.</h1>
-    </div>
+    <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
     <p>
         <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
-        <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
+        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </p>
 </body>
 </html>
