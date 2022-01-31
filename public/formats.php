@@ -2,6 +2,15 @@
     
 ini_set('error_reporting', E_ALL ^ E_NOTICE); 
 ini_set('display_errors', 1); 
+
+session_start();  // Initialize the session
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
 set_time_limit(0);
 
 require('../vendor/autoload.php');
@@ -46,18 +55,16 @@ $url = base64_decode($url);
 <script>
   var _paq = window._paq = window._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    var u="https://ytapp-darrylmcoder.matomo.cloud/";
+    var u="//imap.darrylmcoder.epizy.com/analytics/";
     _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
+    _paq.push(['setSiteId', '3']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src='//cdn.matomo.cloud/ytapp-darrylmcoder.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<noscript><p><img src="https://ytapp-darrylmcoder.matomo.cloud/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
     
   </head>
