@@ -1,6 +1,16 @@
 
 <?php
 
+session_start();  // Initialize the session
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    send_json([
+      'error' => 'Please log in to watch this video.'
+    ]);
+    exit;
+}
+
 require('../vendor/autoload.php');
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
