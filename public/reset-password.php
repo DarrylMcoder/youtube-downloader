@@ -1,13 +1,17 @@
 <?php
 include('./config.php');  // Include config file
+
 session_start();  // Initialize the session
 
-// Check if the user is logged in, otherwise redirect to login page
+ //Get full URL of current page to pass to login page in ?next parameter
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+$full_url = $protocol."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+ 
+// Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: login.php?next=".$full_url);
     exit;
 }
-
  
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";

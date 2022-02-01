@@ -4,12 +4,17 @@ ini_set('error_reporting', E_ALL ^ E_NOTICE);
 ini_set('display_errors', 1); 
 
 session_start();  // Initialize the session
+
+ //Get full URL of current page to pass to login page in ?next parameter
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+$full_url = $protocol."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: login.php?next=".$full_url);
     exit;
 }
+
 set_time_limit(0);
 
 require('../vendor/autoload.php');
