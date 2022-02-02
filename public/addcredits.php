@@ -1,9 +1,5 @@
 <?php
 
-session_start();
-if($_SESSION['username'] !== 'Darryl'){
-  header('Location: login.php');
-}
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
   $amount = $amount_cents = $phone = $sql = '';
   $amount_err = $phone_err = $sql_err = '';
