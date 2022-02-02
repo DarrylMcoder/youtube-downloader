@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+if($_SESSION['username'] !== 'Darryl'){
+  header('Location: login.php');
+}
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
   $amount = $amount_cents = $phone = $sql = '';
   $amount_err = $phone_err = $sql_err = '';
@@ -15,6 +19,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   if(!isset($phone) || strlen($phone) < 10){
     $phone_err = 'Please enter a valid phone number';
   }
+if(empty($amount_err) && empty($phone_err)){
   
   include('./config.php');
   
@@ -31,6 +36,7 @@ ON DUPLICATE KEY UPDATE
   
   $mysqli->query($sql);
   $sql_err = $mysqli->error;
+}
 }
 
 ?>
@@ -65,6 +71,9 @@ ON DUPLICATE KEY UPDATE
 if(!empty($sql_err)){
             echo '<div class="alert alert-danger">' . $sql_err . '</div>';
         }        
+      if(empty($sql_err) && empty($phone_err) && empty($amount_err)){
+        echo '<div class="alert alert-success"><strong>Success!</strong> $'.$amount.' was added to the account for '.$phone.'</div>';
+      }
       ?>
       <form action="" method="post">
         <input type="number" step="0.01" class="form-control <?php echo !empty($amount_err) ? 'is-invalid' : '' ?>" name="amount" placeholder="Amount in Canadian dollars" value="<?=$amount?>">
