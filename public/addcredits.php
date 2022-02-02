@@ -66,17 +66,17 @@ ON DUPLICATE KEY UPDATE
       <br>
       <?php
 if(!empty($sql_err)){
-            echo '<div class="alert alert-danger">' . $login_err . '</div>';
+            echo '<div class="alert alert-danger">' . $sql_err . '</div>';
         }        
       ?>
       <form action="" method="post">
-        <input type="number" class="form-control <?php echo isset($amount_err) ? 'is-invalid' : '' ?>" name="amount" placeholder="Amount in Canadian dollars">
+        <input type="number" step="0.01" class="form-control <?php echo !empty($amount_err) ? 'is-invalid' : '' ?>" name="amount" placeholder="Amount in Canadian dollars">
         <div class="invalid-feedback">
           <?=$amount_err?>
         </div>
-        <input type="tel" class="form-control <?php echo isset($phone_err) ? 'is-invalid' : '' ?>" name="phone" placeholder="Phone number of account">
+        <input type="tel" class="form-control <?php echo !empty($phone_err) ? 'is-invalid' : '' ?>" name="phone" placeholder="Phone number of account">
         <div class="invalid-feedback">
-          <?=$amount_err?>
+          <?=$phone_err?>
         </div>
         
         <button type="submit"  class="go">
