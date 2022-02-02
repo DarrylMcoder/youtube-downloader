@@ -11,9 +11,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $amount_err = 'Enter an amount';
   }
   $amount_cents = $amount * 100;
-  if($amount_cents < 1000){
-    $amount_err = 'Minimum of $10';
-  }
   
   if(!isset($phone) || strlen($phone) < 10){
     $phone_err = 'Please enter a valid phone number';
@@ -70,11 +67,11 @@ if(!empty($sql_err)){
         }        
       ?>
       <form action="" method="post">
-        <input type="number" step="0.01" class="form-control <?php echo !empty($amount_err) ? 'is-invalid' : '' ?>" name="amount" placeholder="Amount in Canadian dollars">
+        <input type="number" step="0.01" class="form-control <?php echo !empty($amount_err) ? 'is-invalid' : '' ?>" name="amount" placeholder="Amount in Canadian dollars" value="<?=$amount?>">
         <div class="invalid-feedback">
           <?=$amount_err?>
         </div>
-        <input type="tel" class="form-control <?php echo !empty($phone_err) ? 'is-invalid' : '' ?>" name="phone" placeholder="Phone number of account">
+        <input type="tel" class="form-control <?php echo !empty($phone_err) ? 'is-invalid' : '' ?>" name="phone" placeholder="Phone number of account" value="<?=$phone?>">
         <div class="invalid-feedback">
           <?=$phone_err?>
         </div>
