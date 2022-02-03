@@ -1,7 +1,4 @@
 <?PHP
-    
-ini_set('error_reporting', E_ALL ^ E_NOTICE); 
-ini_set('display_errors', 1); 
 
 session_start();  // Initialize the session
 
@@ -11,9 +8,33 @@ $full_url = $protocol."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php?next=".$full_url);
+    header("location: login.php?next=".urlencode($full_url));
     exit;
 }
+
+
+include('./config.php');
+$phone = $_SESSION['phone'];
+$sql = "SELECT amount_cents FROM credits WHERE phone = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("i", $phone);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($amount_cents);
+$stmt->fetch();
+
+if($amount_cents <= 0){
+  header("Location: nomoney.php");
+  exit;
+}
+
+$video_price = getenv("VIDEO_PRICE");
+$phone = $_SESSION['phone'];
+$sql = "UPDATE credits 
+SET amount_cents = amount_cents - ? WHERE phone = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("ii", $video_price, $phone);
+$stmt->execute();
 
 set_time_limit(0);
 
