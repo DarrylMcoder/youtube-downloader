@@ -24,7 +24,7 @@ $stmt->bind_result($amount_cents);
 $stmt->fetch();
 
 if($amount_cents <= 0){
-  header("Location: nomoney.php");
+  header("Location: account.php");
   exit;
 }
 
