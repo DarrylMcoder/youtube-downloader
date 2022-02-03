@@ -11,6 +11,33 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
+//check if user has credits left
+
+include('./config.php');
+$phone = $_SESSION['phone'];
+$sql = "SELECT amount_cents FROM credits WHERE phone = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("i", $phone);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($amount_cents);
+$stmt->fetch();
+
+if($amount_cents <= 0){
+  send_json([
+    'error' => 'Your account is empty. \n Please add money before watching this video.'
+  ]);
+  exit;
+}
+
+$video_price = getenv("VIDEO_PRICE");
+$phone = $_SESSION['phone'];
+$sql = "UPDATE credits 
+SET amount_cents = amount_cents - ? WHERE phone = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("ii", $video_price, $phone);
+$stmt->execute();
+
 require('../vendor/autoload.php');
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
