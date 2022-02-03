@@ -11,9 +11,9 @@ $stmt->store_result();
 $stmt->bind_result($amount_cents);
 $stmt->fetch();
 if($amount_cents <= 0){
-  $money_msg = "<div class='alert alert-danger'>Your account has no money in it. Please add money to your account before watching more videos.<br> a href='account.php'>Add money.</a></div>";
+  $money_msg = "<div class='alert-danger'>Your account has no money in it. Please add money to your account before watching more videos.<br> a href='account.php'>Add money.</a></div>";
 }elseif($amount_cents < 50){
-  $money_msg = "<div class='alert alert-warning'>You have less than 50&#162; in your account. <br> <a href='account.php'>Add more?</a></div>";
+  $money_msg = "<div class='alert-warning'>You have less than 50&#162; in your account. <br> <a href='account.php'>Add more?</a></div>";
 }
 $amount = $amount_cents / 100;
 $username = $_SESSION['username'];
@@ -28,7 +28,6 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <title>YouTube Downloader</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css">
   
   <link rel="apple-touch-icon"

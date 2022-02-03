@@ -123,7 +123,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       }
     </style>
     <title>Sign Up</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css">
     <script type="text/javascript" src="http://static.darrylmcoder.epizy.com/assets/script.js"></script>
     <style>
@@ -133,7 +132,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
   <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
-    <div class="wrapper">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <div class="content">
         <div class="pagetitle">
           Sign Up
       </div>

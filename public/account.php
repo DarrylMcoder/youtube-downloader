@@ -24,9 +24,9 @@ $stmt->store_result();
 $stmt->bind_result($amount_cents);
 $stmt->fetch();
 if($amount_cents <= 0){
-  $money_msg = "<div class='alert alert-danger'>Your account has no money in it. Please add money to your account using one of the following methods before watching more videos.</div>";
+  $money_msg = "<div class='alert-danger'>Your account has no money in it. Please add money to your account using one of the following methods before watching more videos.</div>";
 }elseif($amount_cents < 50){
-  $money_msg = "<div class='alert alert-warning'>You have less than 50&#162; in your account. <br> <a href='account.php'>Add more?</a></div>";
+  $money_msg = "<div class='alert-warning'>You have less than 50&#162; in your account. <br> <a href='account.php'>Add more?</a></div>";
 }
 $amount = $amount_cents / 100;
 $username = $_SESSION['username'];
@@ -48,7 +48,6 @@ $username = $_SESSION['username'];
       }
     </style>
     <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script type="text/javascript" src="http://static.darrylmcoder.epizy.com/assets/script.js"></script>
     <!--<link rel="stylesheet" href="style.css"/>-->
     <!--<script defer src="script.js"></script>-->
