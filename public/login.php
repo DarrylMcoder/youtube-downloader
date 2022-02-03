@@ -115,14 +115,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css">
+    <script type="text/javascript" src="http://static.darrylmcoder.epizy.com/assets/script.js"></script>
     <style>
         body{ font: 14px sans-serif; }
         .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
 <body>
+  <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
     <div class="wrapper">
-        <h2>Login</h2>
+        <div class="pagetitle">
+          Login 
+      </div>
         <p>Please fill in your credentials to login.</p>
 
         <?php 
@@ -148,5 +153,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>
     </div>
+  <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/footer.html'); ?>
 </body>
 </html>

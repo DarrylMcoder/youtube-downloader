@@ -1,3 +1,25 @@
+<?php
+
+if($_SESSION['loggedin'] === true){
+include('./config.php');
+$phone = $_SESSION['phone'];
+$sql = "SELECT amount_cents FROM credits WHERE phone = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("i", $phone);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($amount_cents);
+$stmt->fetch();
+if($amount_cents <= 0){
+  $money_msg = "<div class='alert alert-danger'>Your account has no money in it. Please add money to your account before watching more videos.<br> a href='account.php'>Add money.</a></div>";
+}elseif($amount_cents < 50){
+  $money_msg = "<div class='alert alert-warning'>You have less than 50&#162; in your account. <br> <a href='account.php'>Add more?</a></div>";
+}
+$amount = $amount_cents / 100;
+$username = $_SESSION['username'];
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
