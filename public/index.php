@@ -7,6 +7,7 @@
     <title>YouTube Downloader</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css">
+  
   <link rel="apple-touch-icon"
       href="img/apple-touch-icon.png" />
   <style>
@@ -49,6 +50,9 @@
   <div class="content">
     <div class="pagetitle">
       Video Downloader
+      <a href="account.php">
+      <i class="account-icon fa fa-user" aria-hidden="true"></i>
+      </a>
     </div>
     <a href="https://t.me/joinchat/zGTCgHpvKN9iMWYx">
       <img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/telegram.png" width="50" height="50"/><img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/cloudveil.png" width="50" height="50"><br>

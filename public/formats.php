@@ -9,6 +9,7 @@ require('../vendor/autoload.php');
 require('../src/functions.php');
 
 crypt_enable("http://static.darrylmcoder.epizy.com/assets/loading.html", function(){
+  session_start();
   include('./config.php');
   $video_price = getenv("VIDEO_PRICE");
   $phone = $_SESSION['phone'];
@@ -74,6 +75,9 @@ $url = base64_decode($url);
     <div class="content"><br>
       <div class="pagetitle">
         Video Downloader
+        <a href="account.php">
+      <i class="account-icon fa fa-user" aria-hidden="true"></i>
+      </a>
       </div>
 
 <?php
