@@ -13,6 +13,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 //check if user had enough money in account
+include('./config.php');
 $phone = $_SESSION['phone'];
 $sql = "SELECT amount_cents FROM credits WHERE phone = ?";
 $stmt = $mysqli->prepare($sql);
