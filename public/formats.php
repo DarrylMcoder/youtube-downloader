@@ -8,7 +8,16 @@ set_time_limit(0);
 require('../vendor/autoload.php');
 require('../src/functions.php');
 
-crypt_enable("http://static.darrylmcoder.epizy.com/assets/loading.html");
+crypt_enable("http://static.darrylmcoder.epizy.com/assets/loading.html", function(){
+  include('./config.php');
+  $video_price = getenv("VIDEO_PRICE");
+  $phone = $_SESSION['phone'];
+  $sql = "UPDATE credits 
+SET amount_cents = amount_cents - ? WHERE phone = ?";
+  $stmt = $mysqli->prepare($sql);
+  $stmt->bind_param("ii", $video_price, $phone);
+  $stmt->execute();
+});
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
 

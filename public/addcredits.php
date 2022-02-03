@@ -67,7 +67,7 @@ ON DUPLICATE KEY UPDATE
 if(!empty($sql_err)){
             echo '<div class="alert alert-danger">' . $sql_err . '</div>';
         }        
-      if(empty($sql_err) && empty($phone_err) && empty($amount_err)){
+      if(empty($sql_err) && empty($phone_err) && empty($amount_err) &&!empty($amount)){
         echo '<div class="alert alert-success"><strong>Success!</strong> $'.$amount.' was added to the account for '.$phone.'</div>';
       }
       ?>

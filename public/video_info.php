@@ -25,7 +25,8 @@ $stmt->fetch();
 
 if($amount_cents <= 0){
   send_json([
-    'error' => 'Your account is empty. \n Please add money before watching this video.'
+    'error' => 'Your account is empty.
+    Please add money before watching this video.'
   ]);
   exit;
 }
