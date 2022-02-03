@@ -124,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
   <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
-    <div class="wrapper">
+    <div class="content">
         <div class="pagetitle">
           Login 
       </div>

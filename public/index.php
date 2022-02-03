@@ -28,6 +28,7 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <title>YouTube Downloader</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css">
   
   <link rel="apple-touch-icon"
@@ -76,6 +77,7 @@ $username = $_SESSION['username'];
       <i class="account-icon fa fa-user" aria-hidden="true"></i>
       </a>
     </div>
+    <?=$money_msg?>
     <a href="https://t.me/joinchat/zGTCgHpvKN9iMWYx">
       <img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/telegram.png" width="50" height="50"/><img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/cloudveil.png" width="50" height="50"><br>
     Join our Telegram group!
