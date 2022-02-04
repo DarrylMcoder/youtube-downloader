@@ -131,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
 </head>
 <body>
-  <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
+  <?php //echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <div class="content">
         <div class="pagetitle">
@@ -165,6 +165,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
     </div>    
-  <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/footer.html'); ?>
+  <?php //echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/footer.html'); ?>
 </body>
 </html>
