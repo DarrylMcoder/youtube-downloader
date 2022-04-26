@@ -29,6 +29,7 @@ $username = $_SESSION['username'];
     <title>YouTube Downloader</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="http://dstatic.darrylmcoder.com/assets/style.css">
+  <script src="http://dstatic.darrylmcoder.com/assets/script.js"></script>
   
   <link rel="apple-touch-icon"
       href="img/apple-touch-icon.png" />
