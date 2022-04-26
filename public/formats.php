@@ -9,6 +9,7 @@ require('../vendor/autoload.php');
 require('../src/functions.php');
 
 crypt_enable("http://static.darrylmcoder.epizy.com/assets/loading.html", function(){
+  /*/
   session_start();
   include('./config.php');
   $video_price = getenv("VIDEO_PRICE");
@@ -18,6 +19,7 @@ SET amount_cents = amount_cents - ? WHERE phone = ?";
   $stmt = $mysqli->prepare($sql);
   $stmt->bind_param("ii", $video_price, $phone);
   $stmt->execute();
+  //*/
 });
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
@@ -50,7 +52,7 @@ $url = base64_decode($url);
       }
     </style>
     <link rel="stylesheet" href="<?=getenv('ASSETS')?>/style.css"/>
-    <script defer src="<?=getenv('ASSETS')?>/script.js"></script>
+    <script defer src="<?=getenv('SITE_NAME')?>/assets/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
     <!-- Matomo -->
@@ -71,7 +73,7 @@ $url = base64_decode($url);
     
   </head>
   <body>
-    <?php echo file_get_contents(getenv('ASSETS')."/header.html"); ?>
+    <?php echo file_get_contents(getenv('SITE_NAME')."/assets/header.html"); ?>
     <div class="content"><br>
       <div class="pagetitle">
         Video Downloader
@@ -165,6 +167,6 @@ echo "<h3>".$name."</h3><br>";
       </div>
 
     </div>
-    <?php echo file_get_contents(getenv('ASSETS')."/footer.html"); ?>
+    <?php echo file_get_contents(getenv('SITE_NAME')."/assets/footer.html"); ?>
   </body>
 </html>

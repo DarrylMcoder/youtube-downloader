@@ -10,7 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     ]);
     exit;
 }
-
+/*/
 //check if user has credits left
 
 include('./config.php');
@@ -37,7 +37,7 @@ SET amount_cents = amount_cents - ? WHERE phone = ?";
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param("ii", $video_price, $phone);
 $stmt->execute();
-
+//*/
 require('../vendor/autoload.php');
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;

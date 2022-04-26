@@ -1,5 +1,5 @@
 <?php
-
+/*/
 if($_SESSION['loggedin'] === true){
 include('./config.php');
 $phone = $_SESSION['phone'];
@@ -18,7 +18,7 @@ if($amount_cents <= 0){
 $amount = $amount_cents / 100;
 $username = $_SESSION['username'];
 }
-
+//*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <title>YouTube Downloader</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="http://static.darrylmcoder.epizy.com/assets/style.css">
+  <link rel="stylesheet" href="http://dstatic.darrylmcoder.com/assets/style.css">
   
   <link rel="apple-touch-icon"
       href="img/apple-touch-icon.png" />
@@ -68,7 +68,7 @@ $username = $_SESSION['username'];
   
 </head>
 <body>
-  <?php  echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/header.html'); ?>
+  <?php  echo file_get_contents('http://dstatic.darrylmcoder.com/assets/header.html'); ?>
   <div class="content">
     <div class="pagetitle">
       Video Downloader
@@ -78,7 +78,7 @@ $username = $_SESSION['username'];
     </div>
     <?=$money_msg?>
     <a href="https://t.me/joinchat/zGTCgHpvKN9iMWYx">
-      <img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/telegram.png" width="50" height="50"/><img src="stream.php?url=http://ytapp.darrylmcoder.epizy.com/img/cloudveil.png" width="50" height="50"><br>
+      <img src="stream.php?url=http://yt.app.darrylmcoder.com/img/telegram.png" width="50" height="50"/><img src="stream.php?url=http://yt.app.darrylmcoder.com/img/cloudveil.png" width="50" height="50"><br>
     Join our Telegram group!
     </a><br><br>
     <form action="formats.php" method="get">
@@ -186,6 +186,6 @@ $username = $_SESSION['username'];
   }
 </script>
 </div>
-  <?php echo file_get_contents('http://static.darrylmcoder.epizy.com/assets/footer.html'); ?>
+  <?php echo file_get_contents('http://dstatic.darrylmcoder.com/assets/footer.html'); ?>
 </body>
 </html>

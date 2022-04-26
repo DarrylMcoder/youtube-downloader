@@ -12,7 +12,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-
+/*/
 include('./config.php');
 $phone = $_SESSION['phone'];
 $sql = "SELECT amount_cents FROM credits WHERE phone = ?";
@@ -35,6 +35,7 @@ SET amount_cents = amount_cents - ? WHERE phone = ?";
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param("ii", $video_price, $phone);
 $stmt->execute();
+//*/
 
 set_time_limit(0);
 
