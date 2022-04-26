@@ -72,9 +72,6 @@ $username = $_SESSION['username'];
   <div class="content">
     <div class="pagetitle">
       Video Downloader
-      <a href="account.php">
-      <i class="account-icon fa fa-user" aria-hidden="true"></i>
-      </a>
     </div>
     <?=$money_msg?>
     <a href="https://t.me/joinchat/zGTCgHpvKN9iMWYx">
