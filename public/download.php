@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php?next=".urlencode($full_url));
     exit;
 }
-/*/
+/*/ 
 //check if user had enough money in account
 include('./config.php');
 $phone = $_SESSION['phone'];
