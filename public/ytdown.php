@@ -6,13 +6,14 @@ session_start();  // Initialize the session
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
 $full_url = $protocol."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
  
+/*/
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php?next=".urlencode($full_url));
     exit;
 }
 
-/*/
+
 include('./config.php');
 $phone = $_SESSION['phone'];
 $sql = "SELECT amount_cents FROM credits WHERE phone = ?";
