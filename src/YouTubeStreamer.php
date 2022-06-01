@@ -4,6 +4,7 @@ namespace YouTube;
 
 class YouTubeStreamer
 {
+    protected $url;
     // 4096
     protected $buffer_size = 256 * 1024;
 
@@ -60,6 +61,8 @@ class YouTubeStreamer
 
     public function stream($url)
     {
+        $url  = str_replace(" ", "%20", $url);
+        $this->url = $url;
         $ch = curl_init();
 
         $headers = array();
@@ -97,8 +100,8 @@ class YouTubeStreamer
 
         // TODO: $this->logError($ch);
         $error = ($ret === false) ? sprintf('curl error: %s, num: %s', curl_error($ch), curl_errno($ch)) : null;
-
         curl_close($ch);
+     
 
         // if we are still here by now, then all must be okay
         return true;
