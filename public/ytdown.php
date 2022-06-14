@@ -93,7 +93,7 @@ $links = $youtube->getDownloadLinks($url);
 
 $name = $links->getInfo()->getTitle();
 
-$download_date = new Date("Y-m-d h:i:s");
+$download_date = date("Y-m-d h:i:s");
 logVid($download_date, $name, $url);
 
 $vid_url = $mp4_vids[0]->url;
