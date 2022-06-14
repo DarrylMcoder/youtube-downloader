@@ -54,17 +54,20 @@ $youtube = new \YouTube\YouTubeDownloader();
 $videoSaver = new \YouTube\VideoSaver();
 
 try{
- download($url,$youtube,$videoSaver);
+ $name = download($url,$youtube,$videoSaver);
 } catch(YouTube\Exception\TooManyRequestsException $e){
  
   $fixie = getenv('FIXIE_URL');
   $youtube->getBrowser()->setProxy($fixie);
-  download($url,$youtube,$videoSaver);
+  $name = download($url,$youtube,$videoSaver);
 } catch(Exception $e){
   echo $e->getMessage();
 }
 
-function logVid($download_date,$name,$url){
+$download_date = date("Y-m-d h:i:s");
+logVid($mysqli, $download_date, $name, $url);
+
+function logVid($mysqli,$download_date,$name,$url){
   date_default_timezone_set('EST');
   if(!isset($download_date,$name,$url)){
     throw new Exception("Log params missing!");
@@ -92,9 +95,6 @@ $links = $youtube->getDownloadLinks($url);
 //$formats = $links->getFirstCombinedFormat();
 
 $name = $links->getInfo()->getTitle();
-
-$download_date = date("Y-m-d h:i:s");
-logVid($download_date, $name, $url);
 
 $vid_url = $mp4_vids[0]->url;
 
