@@ -41,6 +41,7 @@ $stmt->execute();
 set_time_limit(0);
 
 require('../vendor/autoload.php');
+include('database_config.php');
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
 
@@ -63,6 +64,21 @@ try{
   echo $e->getMessage();
 }
 
+function log($download_date,$name,$url){
+  date_default_timezone_set('EST');
+  if(!isset($download_date,$name,$url)){
+    throw new Exception("Log params missing!");
+  }
+  $sql = "INSERT INTO Videos(
+download_date,name,downloads,url) 
+VALUES('$download_date','$name',1,'$url') ON DUPLICATE KEY UPDATE downloads = downloads +  1,download_date = '$download_date'";
+
+  if(!$mysqli->query($sql)){
+    echo $sql."<br>";
+    echo $mysqli->error;
+  }
+}
+
 function download($url,$youtube,$videoSaver){
 
 $links = $youtube->getDownloadLinks($url);
@@ -76,6 +92,9 @@ $links = $youtube->getDownloadLinks($url);
 //$formats = $links->getFirstCombinedFormat();
 
 $name = $links->getInfo()->getTitle();
+
+$download_date = new Date("Y-m-d h:i:s");
+log($download_date, $name, $url);
 
 $vid_url = $mp4_vids[0]->url;
 
