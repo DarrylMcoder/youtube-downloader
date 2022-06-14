@@ -64,7 +64,7 @@ try{
   echo $e->getMessage();
 }
 
-function log($download_date,$name,$url){
+function logVid($download_date,$name,$url){
   date_default_timezone_set('EST');
   if(!isset($download_date,$name,$url)){
     throw new Exception("Log params missing!");
@@ -94,7 +94,7 @@ $links = $youtube->getDownloadLinks($url);
 $name = $links->getInfo()->getTitle();
 
 $download_date = new Date("Y-m-d h:i:s");
-log($download_date, $name, $url);
+logVid($download_date, $name, $url);
 
 $vid_url = $mp4_vids[0]->url;
 
