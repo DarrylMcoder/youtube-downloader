@@ -95,7 +95,7 @@ $username = $_SESSION['username'];
       
     </h3>
 
-  <video width="100%" controls>
+  <video width="100%" style="display:none" controls>
     <source src="" type="video/mp4"/>
     <em>Sorry, your browser doesn't support HTML5 video.</em>
 </video>
@@ -172,6 +172,7 @@ $username = $_SESSION['username'];
 
                 var video = $("video");
                 video.attr('src', stream_url);
+                video.show();
                 video[0].load();
                var today = new Date();
           var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
