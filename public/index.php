@@ -104,13 +104,13 @@ $username = $_SESSION['username'];
       
     </p>
 
-    <div class="opts">
-      <h3>
+     <h3>
         Popularity Board
       </h3>
       <p>
         View videos recently downloaded by other people. 
       </p>
+     
       <?php
   include('database_config.php');
   //get 10 recent downloads
@@ -122,14 +122,15 @@ $username = $_SESSION['username'];
   foreach($rows as $row){
     $name = $row['name'];
     $url  = $row['url'];
-    echo '<video controls>';
+    echo '<div class="opts">';
+    echo '<video width="100%" controls>';
     echo '<source src="ytdown.php?url='. $url.'" type="video/mp4"/>';
     echo '<em>Sorry, your browser doesn\'t support HTML5 video.</em>';
     echo '</video>';
-    echo '<h3>'. $name .'</h3><br><br>';
+    echo '<h3>'. $name .'</h3>';
+    echo '</div>';
   }
       ?>
-    </div>
 <script>
     $(function () {
 
