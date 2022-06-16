@@ -123,7 +123,7 @@ $username = $_SESSION['username'];
     $name = $row['name'];
     $url  = $row['url'];
     echo '<video controls>';
-    echo '<source src="ytdown.php?url='. $url.'" type="video/mp4"/>'
+    echo '<source src="ytdown.php?url='. $url.'" type="video/mp4"/>';
     echo '<em>Sorry, your browser doesn\'t support HTML5 video.</em>';
     echo '</video>';
     echo '<h3>'. $name .'</h3><br><br>';
