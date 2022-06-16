@@ -104,7 +104,32 @@ $username = $_SESSION['username'];
       
     </p>
 
-
+    <div class="opts">
+      <h3>
+        Popularity Board
+      </h3>
+      <p>
+        View videos recently downloaded by other people. 
+      </p>
+      <?php
+  include('database_config.php');
+  //get 10 recent downloads
+  $sql = 'SELECT * FROM videos ORDER BY id DESC LIMIT 10';
+  $stmt = $mysqli->prepare($sql);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $rows = $result->fetch_all(MYSQLI_ASSOC);
+  foreach($rows as $row){
+    $name = $row['name'];
+    $url  = $row['url'];
+    echo '<video controls>';
+    echo '<source src="ytdown.php?url='. $url.'" type="video/mp4"/>'
+    echo '<em>Sorry, your browser doesn\'t support HTML5 video.</em>';
+    echo '</video>';
+    echo '<h3>'. $name .'</h3><br><br>';
+  }
+      ?>
+    </div>
 <script>
     $(function () {
 
